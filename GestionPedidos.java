@@ -1,6 +1,46 @@
 import java.util.Scanner;
 
+/**
+ * Clase GestionPedidos - Sistema de gestión de pedidos para Pizza-Track
+ * 
+ * Esta clase implementa un sistema interactivo de gestión de pedidos de pizzas
+ * usando dos pilas para manejar las operaciones de Undo (Deshacer) y Redo (Rehacer).
+ * 
+ * Funcionalidades principales:
+ * - Registrar nuevos pedidos de pizzas con nombre e ingredientes
+ * - Deshacer (Undo): Mover un pedido de la pila principal a la secundaria
+ * - Rehacer (Redo): Recuperar un pedido deshecho desde la pila secundaria
+ * - Mostrar el pedido actual en producción
+ * 
+ * Estructura de datos:
+ * - pilaPrincipal: Contiene los pedidos activos. Al deshacer, se mueven a pilaSecundaria
+ * - pilaSecundaria: Contiene los pedidos deshechados. Al rehacer, se recuperan a pilaPrincipal
+ * 
+ * @author Pizza-Track Team
+ * @version 1.0
+ */
 public class GestionPedidos {
+    
+    /**
+     * Método principal que inicia el sistema de gestión de pedidos
+     * 
+     * Presenta un menú interactivo que permite al usuario:
+     * 1. Registrar un nuevo pedido de pizza
+     * 2. Deshacer la última acción registrada
+     * 3. Rehacer una acción deshecha
+     * 4. Visualizar el pedido actual
+     * 0. Salir del sistema
+     * 
+     * El usuario debe ingresar un número correspondiente a la opción deseada.
+     * El método valida que la entrada sea un número válido.
+     * 
+     * Notas importantes:
+     * - Al registrar una nueva acción, el historial de "Rehacer" se limpia automáticamente
+     * - Cada pizza requiere exactamente 3 ingredientes
+     * - La pila principal contiene los pedidos activos en producción
+     * 
+     * @param args Argumentos de línea de comandos (no utilizados en esta implementación)
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         

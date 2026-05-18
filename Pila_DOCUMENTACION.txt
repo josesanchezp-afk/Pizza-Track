@@ -1,0 +1,161 @@
+================================================================================
+                         DOCUMENTACIÓN - CLASE Pila
+================================================================================
+
+PROPÓSITO:
+----------
+Implementa una estructura de datos de pila (stack) genérica sin usar 
+colecciones de Java. Una pila es una estructura LIFO (Last In, First Out) 
+donde el último elemento insertado es el primero en ser retirado.
+
+UBICACIÓN:
+----------
+Archivo: Pila.java
+Paquete: (Por defecto)
+
+CARACTERÍSTICAS:
+----------------
+- Implementación manual de lista enlazada
+- No utiliza colecciones de Java (ArrayList, Stack, etc.)
+- Tipo genérico: almacena objetos Pizza
+- Manejo de errores con excepciones personalizadas
+
+ESTRUCTURA INTERNA:
+-------------------
+
+1. CLASE INTERNA: Nodo
+   - Atributo pizza (Pizza): referencia al objeto Pizza almacenado
+   - Atributo siguiente (Nodo): referencia al siguiente nodo en la pila
+   - Constructor: Nodo(Pizza pizza)
+   
+   Propósito: Encapsular cada elemento de la pila junto con su enlace 
+   al siguiente nodo.
+
+2. ATRIBUTO: tope (Nodo)
+   - Referencia al nodo que se encuentra en el tope de la pila
+   - Inicialmente null (pila vacía)
+
+MÉTODOS PÚBLICOS:
+-----------------
+
+1. push(Pizza pizza)
+   ├─ Descripción: Agrega un elemento al tope de la pila
+   ├─ Parámetro: pizza (Pizza) - objeto a insertar
+   ├─ Retorna: void
+   ├─ Complejidad temporal: O(1)
+   └─ Comportamiento:
+       1. Crea un nuevo Nodo con la pizza
+       2. Establece el nodo actual como siguiente
+       3. Actualiza el tope al nuevo nodo
+
+2. pop()
+   ├─ Descripción: Remueve y retorna el elemento del tope
+   ├─ Parámetros: ninguno
+   ├─ Retorna: Pizza (el objeto que estaba en el tope)
+   ├─ Complejidad temporal: O(1)
+   ├─ Excepciones: IllegalStateException si la pila está vacía
+   └─ Comportamiento:
+       1. Verifica si la pila no está vacía
+       2. Obtiene el objeto Pizza del tope
+       3. Avanza el tope al siguiente nodo
+       4. Retorna la pizza
+
+3. peek()
+   ├─ Descripción: Obtiene el elemento del tope sin removerlo
+   ├─ Parámetros: ninguno
+   ├─ Retorna: Pizza (el objeto que está en el tope)
+   ├─ Complejidad temporal: O(1)
+   ├─ Excepciones: IllegalStateException si la pila está vacía
+   └─ Comportamiento:
+       1. Verifica si la pila no está vacía
+       2. Retorna el objeto Pizza del tope sin modificar la estructura
+
+4. isEmpty()
+   ├─ Descripción: Verifica si la pila contiene elementos
+   ├─ Parámetros: ninguno
+   ├─ Retorna: boolean (true si vacía, false si contiene elementos)
+   ├─ Complejidad temporal: O(1)
+   └─ Comportamiento:
+       1. Compara tope con null
+       2. Retorna true si es null (vacía)
+
+CONSTRUCTOR:
+------------
+public Pila()
+  - Inicializa la pila vacía
+  - Establece tope = null
+  - Complejidad: O(1)
+
+DIAGRAMA DE ESTRUCTURA (Ejemplo):
+---------------------------------
+Pila con [Pizza A, Pizza B, Pizza C] (C es el tope):
+
+   tope → | C | → | B | → | A | → null
+           Pizza  siguiente Pizza siguiente Pizza siguiente
+                       Nodo          Nodo           Nodo
+
+CASOS DE USO:
+-------------
+1. Sistema Undo/Redo:
+   - pilaPrincipal: almacena los pedidos activos
+   - pilaSecundaria: almacena los pedidos deshechados
+
+2. Operaciones de historial:
+   - Permite navegar hacia adelante y atrás en el historial
+
+3. Procesamiento LIFO:
+   - Procesar elementos en orden inverso al que fueron insertados
+
+FLUJO DE EJEMPLO:
+-----------------
+1. push(PizzaA) → tope apunta a PizzaA
+2. push(PizzaB) → tope apunta a PizzaB, PizzaB.siguiente = PizzaA
+3. push(PizzaC) → tope apunta a PizzaC, PizzaC.siguiente = PizzaB
+4. peek() → retorna PizzaC sin cambiar la estructura
+5. pop() → retorna PizzaC y tope ahora apunta a PizzaB
+6. pop() → retorna PizzaB y tope ahora apunta a PizzaA
+7. isEmpty() → false (todavía hay PizzaA)
+
+MANEJO DE ERRORES:
+------------------
+- pop() en pila vacía → IllegalStateException
+  "No se puede hacer pop en una pila vacía"
+
+- peek() en pila vacía → IllegalStateException
+  "La pila está vacía, no hay elemento para ver"
+
+COMPLEJIDAD:
+------------
+Operación          Complejidad Temporal    Complejidad Espacial
+push()             O(1)                    O(1)
+pop()              O(1)                    O(1)
+peek()             O(1)                    O(1)
+isEmpty()          O(1)                    O(1)
+Almacenamiento     -                       O(n) donde n = # pizzas
+
+VENTAJAS:
+---------
+✓ Eficiente en tiempo (todas las operaciones O(1))
+✓ No requiere redimensionamiento (lista enlazada)
+✓ Fácil implementación manual
+✓ Ideal para aprender estructuras de datos
+
+DESVENTAJAS:
+------------
+✗ Consumo de memoria adicional por punteros
+✗ Sin acceso directo a elementos intermedios
+✗ No es thread-safe (no sincronizado)
+
+AUTOR:
+------
+Pizza-Track Team
+
+VERSIÓN:
+--------
+1.0
+
+NOTAS:
+------
+- Esta pila es especializada para almacenar objetos Pizza
+- Es utilizada específicamente en el sistema GestionPedidos
+- Implementación tipo lista enlazada simple

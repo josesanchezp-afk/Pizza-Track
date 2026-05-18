@@ -1,0 +1,186 @@
+================================================================================
+                         DOCUMENTACIÓN - CLASE Pizza
+================================================================================
+
+PROPÓSITO:
+----------
+Representa un modelo de datos para una pizza en el sistema Pizza-Track.
+Encapsula la información de una pizza: su nombre y los ingredientes que 
+la componen (exactamente 3 ingredientes).
+
+UBICACIÓN:
+----------
+Archivo: Pizza.java
+Paquete: (Por defecto)
+
+RESPONSABILIDADES:
+------------------
+- Almacenar el nombre de la pizza
+- Mantener el arreglo de ingredientes
+- Proporcionar acceso a la información de la pizza
+- Mostrar los detalles de forma formateada
+
+ATRIBUTOS:
+----------
+
+1. nombre (String)
+   - Descripción: Nombre o tipo de la pizza
+   - Ejemplos: "Pepperoni", "Hawaiana", "Cuatro Quesos", "Vegetariana"
+   - Visibilidad: private
+   - Tipo: String
+   - Modificable: No (una vez asignado en el constructor)
+
+2. ingredientes (String[])
+   - Descripción: Arreglo de exactamente 3 ingredientes
+   - Tamaño fijo: 3 elementos
+   - Visibilidad: private
+   - Tipo: String[] (arreglo de cadenas)
+   - Ejemplos: {"Tomate", "Queso", "Pepperoni"}
+   - Modificable: Los valores internos sí, pero no se puede cambiar la referencia
+
+CONSTRUCTOR:
+-------------
+
+public Pizza(String nombre, String[] ingredientes)
+  
+  Parámetros:
+    - nombre (String): El nombre o tipo de pizza
+    - ingredientes (String[]): Arreglo de 3 ingredientes
+  
+  Comportamiento:
+    1. Asigna el nombre proporcionado al atributo nombre
+    2. Asigna el arreglo de ingredientes al atributo ingredientes
+  
+  Complejidad temporal: O(1)
+  
+  Restricciones:
+    - El arreglo debe contener exactamente 3 elementos
+    - No se valida dentro del constructor (validación en GestionPedidos)
+
+MÉTODOS PÚBLICOS:
+-----------------
+
+1. getNombre()
+   ├─ Descripción: Obtiene el nombre de la pizza
+   ├─ Parámetros: ninguno
+   ├─ Retorna: String (el nombre de la pizza)
+   ├─ Complejidad temporal: O(1)
+   └─ Ejemplo de uso:
+       Pizza p = new Pizza("Pepperoni", {...});
+       String nombre = p.getNombre();  // "Pepperoni"
+
+2. getIngredientes()
+   ├─ Descripción: Obtiene el arreglo de ingredientes
+   ├─ Parámetros: ninguno
+   ├─ Retorna: String[] (arreglo de 3 ingredientes)
+   ├─ Complejidad temporal: O(1)
+   └─ Ejemplo de uso:
+       Pizza p = new Pizza("Hawaiana", {"Piña", "Jamón", "Queso"});
+       String[] ing = p.getIngredientes();
+       System.out.println(ing[0]);  // "Piña"
+
+3. mostrarDetalles()
+   ├─ Descripción: Muestra la información completa de la pizza
+   ├─ Parámetros: ninguno
+   ├─ Retorna: void
+   ├─ Complejidad temporal: O(1) (siempre 3 ingredientes)
+   ├─ Comportamiento:
+   │   1. Imprime el nombre de la pizza
+   │   2. Imprime encabezado "Ingredientes:"
+   │   3. Itera sobre los 3 ingredientes
+   │   4. Imprime cada ingrediente numerado
+   └─ Ejemplo de salida:
+       Nombre de la pizza: Pepperoni
+       Ingredientes:
+         1. Tomate
+         2. Queso
+         3. Pepperoni
+
+ESTRUCTURA DE DATOS:
+--------------------
+Pizza
+├── nombre: String = "Pepperoni"
+└── ingredientes: String[]
+    ├── [0] = "Tomate"
+    ├── [1] = "Queso"
+    └── [2] = "Pepperoni"
+
+EJEMPLOS DE INSTANCIACIÓN:
+--------------------------
+
+Ejemplo 1: Pizza Clásica Pepperoni
+String[] ing1 = {"Tomate", "Queso", "Pepperoni"};
+Pizza pizza1 = new Pizza("Pepperoni", ing1);
+
+Ejemplo 2: Pizza Hawaiana
+String[] ing2 = {"Piña", "Jamón", "Queso"};
+Pizza pizza2 = new Pizza("Hawaiana", ing2);
+
+Ejemplo 3: Pizza Vegetariana
+String[] ing3 = {"Champiñones", "Pimiento", "Cebolla"};
+Pizza pizza3 = new Pizza("Vegetariana", ing3);
+
+FLUJO TÍPICO EN GestionPedidos:
+-------------------------------
+1. Usuario selecciona opción 1 (Registrar pedido)
+2. Sistema solicita nombre de la pizza
+3. Sistema solicita 3 ingredientes
+4. Se crea objeto: new Pizza(nombre, ingredientes)
+5. Se agrega a la pila: pilaPrincipal.push(nuevaPizza)
+6. Usuario puede visualizar: pilaPrincipal.peek().mostrarDetalles()
+
+RELACIONES:
+-----------
+- Pizza es utilizada por la clase Pila (que almacena pizzas)
+- Pizza es utilizada por la clase GestionPedidos (que crea y manipula pizzas)
+- Pizza no tiene dependencias externas
+
+VALIDACIONES:
+-------------
+Nota: Las validaciones no están en la clase Pizza, están en GestionPedidos
+
+- El nombre no puede estar vacío (validado en GestionPedidos)
+- Los ingredientes deben ser exactamente 3 (solicitado en GestionPedidos)
+- Los ingredientes no deben estar vacíos (responsabilidad de GestionPedidos)
+
+CONSIDERACIONES DE DISEÑO:
+--------------------------
+✓ Clase simple y enfocada en su responsabilidad
+✓ Encapsulación mediante atributos private
+✓ Métodos getter para acceso controlado
+✓ Método mostrarDetalles() para representación
+✓ Facilidad para extender (agregar más atributos)
+
+POSIBLES MEJORAS FUTURAS:
+-------------------------
+- Agregar atributo de precio
+- Agregar atributo de tamaño (Pequeña, Mediana, Grande)
+- Agregar validación de ingredientes duplicados
+- Agregar método toString() personalizado
+- Agregar equals() y hashCode() para comparaciones
+- Implementar Serializable para persistencia
+
+INMUTABILIDAD:
+---------------
+La clase NO es inmutable:
+- Los atributos pueden ser modificados desde fuera (si se accede via reflection)
+- El arreglo de ingredientes puede tener sus elementos modificados
+
+Para hacerla más segura, se podrían:
+- Devolver copias del arreglo en getIngredientes()
+- Marcar atributos como final
+- Implementar copia defensiva en el constructor
+
+AUTOR:
+------
+Pizza-Track Team
+
+VERSIÓN:
+--------
+1.0
+
+NOTAS:
+------
+- Clase modelo de datos simple
+- No contiene lógica de negocio compleja
+- Enfocada en representación y acceso a datos

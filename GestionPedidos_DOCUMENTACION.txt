@@ -1,0 +1,118 @@
+================================================================================
+                    DOCUMENTACIÓN - CLASE GestionPedidos
+================================================================================
+
+PROPÓSITO:
+----------
+La clase GestionPedidos implementa un sistema interactivo de gestión de pedidos 
+de pizzas usando dos pilas para manejar las operaciones de Undo (Deshacer) y 
+Redo (Rehacer).
+
+UBICACIÓN:
+----------
+Archivo: GestionPedidos.java
+Paquete: (Por defecto)
+
+FUNCIONALIDADES PRINCIPALES:
+----------------------------
+1. Registrar Nombre del cliente para su pedido DE PIZZA
+   - Solicita el nombre de la pizza
+   - Requiere exactamente 3 ingredientes
+   - Crea un objeto Pizza y lo agrega a la pila principal
+
+2. Deshacer (Undo)
+   - Mueve el pedido actual de la pila principal a la secundaria
+   - Permite corregir acciones registradas incorrectamente
+
+3. Rehacer (Redo)
+   - Recupera un pedido deshecho desde la pila secundaria
+   - Restaura la acción si fue cancelada por error
+
+4. Mostrar Pedido Actual
+   - Visualiza el pedido en producción (tope de la pila principal)
+   - Muestra nombre e ingredientes
+
+5. Salir
+   - Cierra el sistema de manera ordenada
+
+ESTRUCTURA DE DATOS:
+--------------------
+- pilaPrincipal (Pila): Contiene los pedidos activos en producción
+  * Al usar UNDO, los pedidos se mueven a pilaSecundaria
+  * Al usar REDO, se recuperan desde pilaSecundaria
+
+- pilaSecundaria (Pila): Contiene los pedidos deshechados
+  * Se limpia automáticamente cuando se registra una nueva acción
+  * Permite recuperar pedidos cancelados accidentalmente
+
+COMPORTAMIENTO IMPORTANTE:
+--------------------------
+- Al registrar una nueva acción, el historial de "Rehacer" se limpia 
+  automáticamente
+- Cada pizza requiere exactamente 3 ingredientes
+- La pila principal contiene los pedidos activos en producción
+- Se valida que el usuario ingrese números válidos en el menú
+
+MÉTODO MAIN:
+------------
+public static void main(String[] args)
+
+Descripción: Inicia el sistema y presenta un menú interactivo
+
+Parámetros:
+  - args (String[]): Argumentos de línea de comandos (no utilizados)
+
+Flujo de ejecución:
+  1. Crea un Scanner para entrada de usuario
+  2. Inicializa dos pilas vacías
+  3. Presenta un menú en bucle hasta que el usuario seleccione 0 (Salir)
+  4. Procesa la opción seleccionada
+  5. Valida que las entradas sean números válidos
+  6. Cierra el Scanner al finalizar
+
+EJEMPLO DE USO:
+---------------
+$ java GestionPedidos
+
+=== PIZZA-TRACK: Gestión de Pedidos ===
+1. Registrar Nombre del cliente, para su pedido DE PIZZA
+2. Deshacer (Undo)
+3. Rehacer (Redo)
+4. Mostrar Pedido Actual
+0. Salir
+Seleccione una opción: 1
+
+Ingrese el nombre de la pizza: Pepperoni
+Ingrese exactamente 3 ingredientes:
+Ingrediente 1: Tomate
+Ingrediente 2: Queso
+Ingrediente 3: Pepperoni
+-> ¡Pedido registrado exitosamente!
+
+FLUJO DE OPERACIONES UNDO/REDO:
+-------------------------------
+1. Usuario registra Pizza A → pilaPrincipal: [A]
+2. Usuario registra Pizza B → pilaPrincipal: [B, A]
+3. Usuario hace UNDO → pilaPrincipal: [A], pilaSecundaria: [B]
+4. Usuario hace REDO → pilaPrincipal: [B, A], pilaSecundaria: []
+5. Usuario registra Pizza C → pilaPrincipal: [C, B, A], pilaSecundaria: [] (limpia)
+
+DEPENDENCIAS:
+-------------
+- java.util.Scanner (entrada de usuario)
+- Clase Pila (estructura de datos)
+- Clase Pizza (modelo de datos)
+
+AUTOR:
+------
+Pizza-Track Team
+
+VERSIÓN:
+--------
+1.0
+
+NOTA:
+-----
+Esta clase es el punto de entrada principal del sistema. Coordina la 
+interacción del usuario con las estructuras de datos (pilas) y los objetos 
+de modelo (pizzas).

@@ -12,7 +12,7 @@ public class GestionPedidos {
 
         do {
             System.out.println("\n=== PIZZA-TRACK: Gestión de Pedidos ===");
-            System.out.println("1. Registrar Nombre del cliente, para su pedido");
+            System.out.println("1. Registrar Nombre del cliente, para su pedido DE PIZZA");
             System.out.println("2. Deshacer (Undo)");
             System.out.println("3. Rehacer (Redo)");
             System.out.println("4. Mostrar Pedido Actual");
@@ -48,9 +48,9 @@ public class GestionPedidos {
 
                 case 2: // UNDO (Deshacer)
                     if (!pilaPrincipal.isEmpty()) {
-                        Pizza pizzaDeshecha = pilaPrincipal.pop();
-                        pilaSecundaria.push(pizzaDeshecha);
-                        System.out.println("-> Acción Deshecha. Se movió a espera: " + pizzaDeshecha.getNombre());
+                        Pizza pizzaDeshechada = pilaPrincipal.pop();
+                        pilaSecundaria.push(pizzaDeshechada);
+                        System.out.println("-> Acción Deshecha. Se movió a espera: " + pizzaDeshechada.getNombre());
                     } else {
                         System.out.println("-> No hay pedidos en la pila principal para deshacer.");
                     }

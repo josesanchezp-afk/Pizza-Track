@@ -217,6 +217,17 @@ public static void main(String[] args)
 | `pop()` | - | Pizza | O(1) | Remueve y retorna elemento del tope |
 | `peek()` | - | Pizza | O(1) | Retorna elemento sin remover |
 | `isEmpty()` | - | boolean | O(1) | Verifica si está vacía |
+Métodos principales de la pila
+
+push(Pizza pizza)
+Agrega un elemento al tope de la pila. Se crea un nuevo nodo con la pizza recibida, este nodo apunta al anterior tope y luego se actualiza la referencia del tope.
+Complejidad: O(1)
+Lógica: el nuevo elemento se convierte en el primero en salir.
+
+pop()
+Remueve y retorna el elemento ubicado en el tope de la pila. Antes de hacerlo, verifica si la pila está vacía; si lo está, lanza una excepción IllegalStateException. Si no, guarda el valor del tope, mueve la referencia al siguiente nodo y devuelve el elemento eliminado.
+Complejidad: O(1)
+Lógica: se elimina el último elemento agregado (LIFO).
 
 **Excepciones:**
 - `IllegalStateException` en `pop()` si está vacía

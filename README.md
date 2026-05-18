@@ -19,6 +19,7 @@ Sistema interactivo de gestión de pedidos de pizzas con operaciones **Undo/Redo
 - [Arquitectura](#arquitectura)
 - [Ejemplos](#ejemplos)
 - [Troubleshooting](#troubleshooting)
+- Video expicativo depush() y pop()
 
 ---
 
@@ -368,14 +369,20 @@ Ingredientes:
   3. Queso
 -----------------------------------
 
-=== PIZZA-TRACK: Gestión de Pedidos ===
+
+== PIZZA-TRACK: Gestión de Pedidos ===
 Seleccione una opción: 0
 Cerrando el sistema Pizza-Track... ¡Hasta pronto!
+
+
+
+
 ```
+<img width="1920" height="1032" alt="Captura de pantalla 2026-05-17 220042" src="https://github.com/user-attachments/assets/37f31b50-e81b-4fc8-bc3d-94372b1a0633" />
 
 ### Flujo de Undo/Redo
 
-```
+
 Estado Inicial:
   pilaPrincipal = []
   pilaSecundaria = []
@@ -399,9 +406,9 @@ REDO:
 Registrar "Vegetariana" (limpia secundaria):
   pilaPrincipal = [Vegetariana, Hawaiana, Pepperoni]
   pilaSecundaria = [] ◄─── LIMPIADA
-```
 
----
+
+
 
 ## 🐛 Troubleshooting
 
@@ -413,7 +420,9 @@ Registrar "Vegetariana" (limpia secundaria):
 - Ingrese solo números: `1`, `2`, `3`, `4` o `0`
 - Intente de nuevo
 
----
+
+<img width="1920" height="1032" alt="image" src="https://github.com/user-attachments/assets/2ca65c69-b0e4-4880-9c2a-b2073d301e3c" />
+
 
 ### ❌ Problema: "No hay pedidos en la pila principal para deshacer"
 
@@ -423,7 +432,7 @@ Registrar "Vegetariana" (limpia secundaria):
 1. Primero registre un pedido (opción `1`)
 2. Luego use deshacer (opción `2`)
 
----
+
 
 ### ❌ Problema: "No hay pedidos en la pila secundaria para rehacer"
 
@@ -433,7 +442,7 @@ Registrar "Vegetariana" (limpia secundaria):
 1. Primero deshaga un pedido (opción `2`)
 2. Luego use rehacer (opción `3`)
 
----
+
 
 ### ❌ Problema: "La pila de pedidos activos está vacía"
 
@@ -443,21 +452,20 @@ Registrar "Vegetariana" (limpia secundaria):
 - Registre un nuevo pedido (opción `1`)
 - Intente mostrar nuevamente (opción `4`)
 
----
+
 
 ### ❌ Error de Compilación: "cannot find symbol"
 
 **Causa:** Falta compilar una de las clases
 
 **Solución:**
-```bash
+bash
 javac Pizza.java
 javac Pila.java
 javac GestionPedidos.java
+
+
 ```
-
----
-
 ## 📖 Glosario de Términos
 
 | Término | Significado |
@@ -473,8 +481,8 @@ javac GestionPedidos.java
 | **NODO** | Estructura que contiene un dato y un enlace al siguiente |
 | **LISTA ENLAZADA** | Estructura donde cada elemento está enlazado con el siguiente |
 | **O(1)** | Complejidad temporal constante |
+```
 
----
 
 ## 🎓 Conceptos Educativos
 
@@ -498,7 +506,7 @@ Este proyecto enseña:
    - Scanner para lectura
    - System.out para salida
 
----
+
 
 ## 📁 Estructura del Proyecto
 
@@ -531,6 +539,9 @@ Posibles extensiones del proyecto:
 - [ ] Multi-usuario con perfiles
 
 ---
+## Video
+# link 
+https://docs.google.com/videos/d/1bbNkvtTplRueioyo5PlALeoKu249kENXOklfBBcI7Gc/edit?usp=sharing
 
 ## 📞 Contacto e Información
 

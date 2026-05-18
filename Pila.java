@@ -14,27 +14,12 @@
  * Esta pila es utilizada en GestionPedidos para manejar el historial
  * de pedidos de pizzas con operaciones de Undo y Redo.
  * 
+ * Utiliza la clase Nodo para encadenar elementos en la lista enlazada.
+ * 
  * @author Pizza-Track Team
  * @version 1.0
  */
 public class Pila {
-    
-    /**
-     * Nodo interno para la pila enlazada
-     */
-    private class Nodo {
-        Pizza pizza;
-        Nodo siguiente;
-        
-        /**
-         * Constructor de Nodo
-         * @param pizza Objeto Pizza a almacenar
-         */
-        Nodo(Pizza pizza) {
-            this.pizza = pizza;
-            this.siguiente = null;
-        }
-    }
     
     private Nodo tope;
     
